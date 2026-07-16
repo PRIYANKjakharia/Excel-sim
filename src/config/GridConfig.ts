@@ -24,13 +24,13 @@ export class GridConfig {
     static readonly FONT = "14px Arial";
 
     // Colors
-    static readonly GRID_COLOR = "#d9d9d9";
-    static readonly HEADER_COLOR = "#59d16b";
+    static readonly GRID_COLOR = "#948585";
+    static readonly HEADER_COLOR = "#296632";
     static readonly HEADER_TEXT = "#f3f6f8";
     static readonly CELL_TEXT = "#000";
 
-    static readonly SELECTION_COLOR = "#3baf5e";
-    static readonly ACTIVE_BORDER = "#a3cf89";
+    static readonly SELECTION_COLOR = "#19472e";
+    static readonly ACTIVE_BORDER = "#37bf0d";
 
     // Padding
     static readonly CELL_PADDING = 5;
