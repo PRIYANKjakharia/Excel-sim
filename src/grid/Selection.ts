@@ -48,6 +48,15 @@ export class Selection {
 
     }
 
+    public selectAll(): void {
+        this.selectionType = SelectionType.RANGE;
+
+        this.selectedRange = {
+            start: { row: 0, column: 0 },
+            end: { row: Number.MAX_SAFE_INTEGER, column: Number.MAX_SAFE_INTEGER }
+        };
+    }
+
     public selectRange( start: CellPosition, end: CellPosition): void {
 
         this.selectionType = SelectionType.RANGE;

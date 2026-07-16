@@ -27,6 +27,7 @@ export class Summary {
             for ( let column = startColumn; column <= endColumn; column++){
 
                 const value = this.dataStore.getCellValue(row, column);
+                if(value.trim()==="")continue;
                 const number = Number(value);
 
                 if (!isNaN(number)){

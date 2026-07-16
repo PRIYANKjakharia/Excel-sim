@@ -93,6 +93,15 @@ export class Grid {
             start: { row: safeStartRow, column: safeStartCol },
             end: { row: safeEndRow, column: safeEndCol }
         };
+        const totalCells = (workerRange.end.row - workerRange.start.row + 1) * (workerRange.end.column - workerRange.start.column + 1);
+
+        if (totalCells > 100000) {
+            const summaryElement = document.querySelector(".summary-bar");
+            if (summaryElement) { 
+                summaryElement.innerHTML = "<span>Selection too large to calculate summary.</span>";
+            }
+            return;
+        }
 
         const summaryData = this.summaryCalculator.calculate(workerRange);
         const summaryElement = document.querySelector(".summary-bar");
@@ -161,6 +170,11 @@ export class Grid {
         this.editor.hide();
         this.canvas.focus();
 
+        if (mouseY < GridConfig.HEADER_HEIGHT && mouseX < GridConfig.HEADER_WIDTH){
+            this.selection.selectAll();
+            this.render();
+            return;
+        }
         // Column Header Intercept & Resizing/Selection
         if (mouseY < GridConfig.HEADER_HEIGHT && mouseX >= GridConfig.HEADER_WIDTH) {
             const hit = this.getColResizeHit(mouseX);
@@ -208,14 +222,10 @@ export class Grid {
     // private handleMouseUp = (event: MouseEvent): void => {
     private handleMouseUp = (): void => {
         if (this.resizeState) {
-            const currentSize = this.resizeState.type === 'COLUMN' 
-                ? this.dataStore.getColumn(this.resizeState.index).width 
-                : this.dataStore.getRow(this.resizeState.index).height;
+            const currentSize = this.resizeState.type === 'COLUMN' ? this.dataStore.getColumn(this.resizeState.index).width  : this.dataStore.getRow(this.resizeState.index).height;
 
             if (currentSize !== this.resizeState.startSize) {
-                const command = this.resizeState.type === 'COLUMN'
-                    ? new ResizeColumnCommand(this.dataStore.getColumn(this.resizeState.index), this.resizeState.startSize, currentSize)
-                    : new ResizeRowCommand(this.dataStore.getRow(this.resizeState.index), this.resizeState.startSize, currentSize);
+                const command = this.resizeState.type === 'COLUMN' ? new ResizeColumnCommand(this.dataStore.getColumn(this.resizeState.index), this.resizeState.startSize, currentSize) : new ResizeRowCommand(this.dataStore.getRow(this.resizeState.index), this.resizeState.startSize, currentSize);
                 this.commandManager.execute(command);
             }
         }

@@ -172,7 +172,7 @@ export class GridRenderer {
             const colWidth = colModel ? colModel.width : GridConfig.COLUMN_WIDTH;
             const drawX = runningX - offsetX;
 
-            if (drawX >= GridConfig.HEADER_WIDTH) {
+            if (drawX + colWidth >= GridConfig.HEADER_WIDTH) {
                 // Determine highlight style configurations if entire column tracks active selection range
                 const isColSelected = (selectionType === 'COLUMN' || selectionType === 'RANGE') && (c >= startColRange && c <= endColRange);
 
@@ -198,7 +198,7 @@ export class GridRenderer {
             const rowHeight = rowModel ? rowModel.height : GridConfig.ROW_HEIGHT;
             const drawY = runningY - offsetY;
 
-            if (drawY >= GridConfig.HEADER_HEIGHT) {
+            if (drawY +rowHeight >= GridConfig.HEADER_HEIGHT) {
                 // Determine highlight style configurations if entire row tracks active selection range
                 const isRowSelected = (selectionType === 'ROW' || selectionType === 'RANGE') && (r >= startRowRange && r <= endRowRange);
 
