@@ -22,6 +22,16 @@ export class Summary {
 
         const endColumn = Math.max( range.start.column, range.end.column );
 
+        // if((endRow-startRow+1) * (endColumn - startColumn+1) > 100000){
+        //     return{
+        //         count:0,
+        //         sum : 0,
+        //         average: 0,
+        //         min: 0,
+        //         max: 0
+        //     }
+        // }
+
         for (let row = startRow; row <= endRow; row++) {
 
             for ( let column = startColumn; column <= endColumn; column++){
