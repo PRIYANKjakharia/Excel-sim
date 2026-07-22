@@ -83,6 +83,7 @@ src
 
 # Class Diagram
 
+<img width="1024" height="1536" alt="Media" src="https://github.com/user-attachments/assets/ab68c221-4409-4d26-bf8f-9b6561ee7881" />
 
 
 ---
